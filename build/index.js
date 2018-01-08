@@ -339,10 +339,10 @@ var Popover = function (_React$Component) {
       var tipExAdjust = "";
       switch (zone.flow) {
         case "row":
-          tipExAdjust = "translateX('+zone.order+'px)";
+          tipExAdjust = "translateX(" + zone.order + "px)";
           break;
         case "column":
-          tipExAdjust = "translateY('+zone.order+'px)";
+          tipExAdjust = "translateY(" + zone.order + "px)";
           break;
         default:
           tipExAdjust = "";
