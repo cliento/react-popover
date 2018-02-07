@@ -490,23 +490,21 @@ var Popover = function (_React$Component) {
       this.onPopoverResize = (0, _lodash2.default)(this.onPopoverResize, minResizeRefreshIntervalMs);
       this.onTargetResize = (0, _lodash2.default)(this.onTargetResize, minResizeRefreshIntervalMs);
 
-      this.frameEl.addEventListener("scroll", this.onFrameScroll);
-      _onResize2.default.on(this.frameEl, this.onFrameResize);
-      _onResize2.default.on(this.containerEl, this.onPopoverResize);
-      _onResize2.default.on(this.targetEl, this.onTargetResize);
+      /* Kickstart layout at first boot. */
+      this.measurePopoverSize();
+      this.measureFrameBounds();
+      this.measureTargetBounds();
+      this.resolvePopoverLayout();
 
       /* Track user actions on the page. Anything that occurs _outside_ the Popover boundaries
       should close the Popover. */
 
       _platform2.default.document.addEventListener("mousedown", this.checkForOuterAction);
       _platform2.default.document.addEventListener("touchstart", this.checkForOuterAction);
-
-      /* Kickstart layout at first boot. */
-
-      this.measurePopoverSize();
-      this.measureFrameBounds();
-      this.measureTargetBounds();
-      this.resolvePopoverLayout();
+      this.frameEl.addEventListener("scroll", this.onFrameScroll);
+      _onResize2.default.on(this.frameEl, this.onFrameResize);
+      _onResize2.default.on(this.targetEl, this.onTargetResize);
+      _onResize2.default.on(this.containerEl, this.onPopoverResize);
     }
   }, {
     key: "untrackPopover",
