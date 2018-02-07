@@ -398,7 +398,7 @@ var Popover = function (_React$Component) {
     key: "animateExitStop",
     value: function animateExitStop() {
       clearTimeout(this.exitingAnimationTimer1);
-      clearTimeout(this.exitingAnimationTimer2);
+      // clearTimeout(this.exitingAnimationTimer2)
       this.setState({ exiting: false });
     }
   }, {
@@ -407,12 +407,14 @@ var Popover = function (_React$Component) {
       var _this2 = this;
 
       this.setState({ exiting: true });
-      this.exitingAnimationTimer2 = setTimeout(function () {
-        setTimeout(function () {
-          _this2.containerEl.style.transform = flowToPopoverTranslations[_this2.zone.flow] + "(" + _this2.zone.order * 50 + "px)";
-          _this2.containerEl.style.opacity = "0";
-        }, 0);
-      }, 0);
+      // this.exitingAnimationTimer2 = setTimeout(() => {
+      //   setTimeout(() => {
+      //     this.containerEl.style.transform = `${flowToPopoverTranslations[
+      //       this.zone.flow
+      //     ]}(${this.zone.order * 50}px)`
+      //     this.containerEl.style.opacity = "0"
+      //   }, 0)
+      // }, 0)
 
       this.exitingAnimationTimer1 = setTimeout(function () {
         _this2.setState({ exited: true, exiting: false });
@@ -423,25 +425,35 @@ var Popover = function (_React$Component) {
     value: function animateEnter() {
       /* Prepare `entering` style so that we can then animate it toward `entered`. */
 
-      this.containerEl.style.transform = flowToPopoverTranslations[this.zone.flow] + "(" + this.zone.order * 50 + "px)";
-      this.containerEl.style[jsprefix("Transform")] = this.containerEl.style.transform;
-      this.containerEl.style.opacity = "0";
-
-      /* After initial layout apply transition animations. */
-      /* Hack: http://stackoverflow.com/questions/3485365/how-can-i-force-webkit-to-redraw-repaint-to-propagate-style-changes */
-      this.containerEl.offsetHeight;
-
-      /* If enterExitTransitionDurationMs is falsy, tip animation should be also disabled */
-      if (this.props.enterExitTransitionDurationMs) {
-        this.tipEl.style.transition = "transform 150ms ease-in";
-        this.tipEl.style[jsprefix("Transition")] = cssprefix("transform") + " 150ms ease-in";
-      }
-      this.containerEl.style.transitionProperty = "top, left, opacity, transform";
-      this.containerEl.style.transitionDuration = this.props.enterExitTransitionDurationMs + "ms";
-      this.containerEl.style.transitionTimingFunction = "cubic-bezier(0.230, 1.000, 0.320, 1.000)";
-      this.containerEl.style.opacity = "1";
-      this.containerEl.style.transform = "translateY(0)";
-      this.containerEl.style[jsprefix("Transform")] = this.containerEl.style.transform;
+      // this.containerEl.style.transform = `${flowToPopoverTranslations[
+      //   this.zone.flow
+      // ]}(${this.zone.order * 50}px)`
+      // this.containerEl.style[
+      //   jsprefix("Transform")
+      // ] = this.containerEl.style.transform
+      // this.containerEl.style.opacity = "0"
+      //
+      // /* After initial layout apply transition animations. */
+      // /* Hack: http://stackoverflow.com/questions/3485365/how-can-i-force-webkit-to-redraw-repaint-to-propagate-style-changes */
+      // this.containerEl.offsetHeight
+      //
+      // /* If enterExitTransitionDurationMs is falsy, tip animation should be also disabled */
+      // if (this.props.enterExitTransitionDurationMs) {
+      //   this.tipEl.style.transition = "transform 150ms ease-in"
+      //   this.tipEl.style[jsprefix("Transition")] = `${cssprefix(
+      //     "transform",
+      //   )} 150ms ease-in`
+      // }
+      // this.containerEl.style.transitionProperty = "top, left, opacity, transform"
+      // this.containerEl.style.transitionDuration = `${this.props
+      //   .enterExitTransitionDurationMs}ms`
+      // this.containerEl.style.transitionTimingFunction =
+      //   "cubic-bezier(0.230, 1.000, 0.320, 1.000)"
+      // this.containerEl.style.opacity = "1"
+      // this.containerEl.style.transform = "translateY(0)"
+      // this.containerEl.style[
+      //   jsprefix("Transform")
+      // ] = this.containerEl.style.transform
     }
   }, {
     key: "trackPopover",
